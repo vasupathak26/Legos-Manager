@@ -34,18 +34,18 @@ app.get("/404", function (req, res) {
     if(theme){
       legoData.getSetsByTheme(theme).then((data)=>{
         if(data.length===0){
-          res.status(404).json({error:"404"});
+          res.sendFile(path.join(__dirname, "/views/404.html"))
         }else{
           res.json(data);
         }
     }).catch((error)=>{
-      res.status(404).json({error:"404"});;
+      res.sendFile(path.join(__dirname, "/views/404.html"))
     })
     }else{
       legoData.getAllSets().then((data)=>{
         res.json(data);
       }).catch((error)=>{
-        res.status(404).json({error:"404"});
+        res.sendFile(path.join(__dirname, "/views/404.html"))
       })   
     }
   });
@@ -56,11 +56,11 @@ app.get("/404", function (req, res) {
             if (data) {
                 res.json(data);
             } else {
-                res.status(404).json({ error: '404' });
+              res.sendFile(path.join(__dirname, "/views/404.html"))
             }
         })
         .catch((error) => {
-            res.status(404).json({ error: '404' });
+          res.sendFile(path.join(__dirname, "/views/404.html"))
         });
 });
   app.listen(HTTP_PORT, () => console.log(`server listening on: ${HTTP_PORT}`));
