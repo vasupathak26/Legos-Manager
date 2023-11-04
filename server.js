@@ -18,34 +18,41 @@ const express = require('express');
 const path = require("path");
 const app=express();
 const HTTP_PORT = process.env.PORT || 8080; 
+app.set('view engine', 'ejs');
 app.use(express.static('public'));
-legoData.initialize()
+legoData.initialize().then(()=>{
+  app.listen(HTTP_PORT, () => console.log(`server listening on: ${HTTP_PORT}`));
+})
 app.get("/",(req, res)=> {
-  res.sendFile(path.join(__dirname, "/views/home.html"));
+  res.render("home");
 });
 app.get("/about", function (req, res) {
-  res.sendFile(path.join(__dirname, "/views/about.html"));
+  res.render("about");
 });
 app.get("/404", function (req, res) {
-  res.sendFile(path.join(__dirname, "/views/404.html"));
+  res.status(404).render("404", {message: "I'm sorry, we're unable to find what you're looking for"});
 });
   app.get('/lego/sets', (req, res) => {
     const theme=req.query.theme;
     if(theme){
       legoData.getSetsByTheme(theme).then((data)=>{
         if(data.length===0){
-          res.sendFile(path.join(__dirname, "/views/404.html"))
+          res.status(404).render("404", {message: "I'm sorry, we're unable to find what you're looking for"});
         }else{
-          res.json(data);
+          res.render("sets",{
+            data: data
+          })
         }
     }).catch((error)=>{
-      res.sendFile(path.join(__dirname, "/views/404.html"))
+      res.status(404).render("404", {message: "I'm sorry, we're unable to find what you're looking for"});
     })
     }else{
       legoData.getAllSets().then((data)=>{
-        res.json(data);
+        res.render("sets",{
+          data: data
+        })
       }).catch((error)=>{
-        res.sendFile(path.join(__dirname, "/views/404.html"))
+        res.status(404).render("404", {message: "I'm sorry, we're unable to find what you're looking for"});
       })   
     }
   });
@@ -54,13 +61,15 @@ app.get("/404", function (req, res) {
     legoData.getSetByNum(setNum)
         .then((data) => {
             if (data) {
-                res.json(data);
+                res.render("set",{
+                  set: data
+                });
             } else {
-              res.sendFile(path.join(__dirname, "/views/404.html"))
+              res.render("404")
             }
         })
         .catch((error) => {
-          res.sendFile(path.join(__dirname, "/views/404.html"))
+          res.status(404).render("404", {message: "I'm sorry, we're unable to find what you're looking for"});
         });
 });
-  app.listen(HTTP_PORT, () => console.log(`server listening on: ${HTTP_PORT}`));
+ 
