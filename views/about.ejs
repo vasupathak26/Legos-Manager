@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css" />
+    <html data-theme="fantasy"></html>
+    <title>About</title>
+</head>
+<body>
+  <%- include('partials/navbar', {page: '/about'}) %>
+      <div class="container mx-auto">
+        <div class="hero bg-base-200 rounded-lg p-6">
+            <div class="hero-content text-center">
+              <div class="max-w-md">
+                <h1 class="text-5xl font-bold">About</h1>
+                <p class="py-6">All about me.</p>
+              </div>
+            </div>
+          </div>
+          <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2  gap-6">
+              <div class="border-2">
+                    <div class="w-full rounded-lg">
+                      <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80" alt="profile"/>
+                    </div>
+              </div>
+              <div class="prose">
+                <p>I am Vasu Shaun Pathak, a student enrolled in the CPP program at Seneca College's Markham campus. My hobbies include badminton, video games, and web programming. I'm a passionate badminton player who enjoys the fast-paced action on the court. When I'm not on the badminton court, you can find me immersed in the world of video games. However, my true passion lies in web programming, where I excel in creating dynamic and interactive web applications. I'm on an exciting journey of self-discovery and academic growth, working hard to leave my mark in the world of computer science.</p>
+              </div>
+            </div>
+          </div>
+      </div>
+</body>
+</html>
