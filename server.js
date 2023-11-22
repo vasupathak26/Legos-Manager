@@ -20,6 +20,7 @@ const app=express();
 const HTTP_PORT = process.env.PORT || 8080; 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }));
 legoData.initialize().then(()=>{
   app.listen(HTTP_PORT, () => console.log(`server listening on: ${HTTP_PORT}`));
 })
@@ -72,4 +73,58 @@ app.get("/404", function (req, res) {
           res.status(404).render("404", {message: "I'm sorry, we're unable to find what you're looking for"});
         });
 });
+app.get('/lego/addSet', (req, res) => {
+  legoData .getAllThemes()
+    .then((themeData) => {
+      res.render("addSet", { themes: themeData });
+    })
+    .catch((error) => {
+      res.send('Internal Server Error in addSet');
+    });
+});
+app.post('/lego/addSet', (req, res) => {
+  legoData.addSet(req.body)
+    .then(() => {
+      res.redirect('/lego/sets');
+    })
+    .catch((error) => {
+      res.render('500', { message: `I'm sorry, but we have encountered the following error: ${error.message}` });
+    });
+  })
+  app.get('/lego/editSet/:num',(req,res)=>{
+    const num=req.params.num
+    Promise.all([
+      legoData.getSetByNum(num),
+      legoData.getAllThemes(),
+    ])
+      .then(([set, themes]) => {
+        res.render('editSet', { themes: themes, set: set });
+      })
+      .catch((error) => {
+        res.status(404).render('404', { message: error.message });
+      });
+  })
+  app.post('/lego/editSet',(req,res)=>{
+    
+  legoData.editSet(req.body.set_num,req.body)
+    .then(() => {
+      
+      res.redirect('/lego/sets');
+      
+    })
+    .catch((error) => {
+      res.render('500', { message: `I'm sorry, but we have encountered the following error: ${error}` });
+    });
+  })
+
+  app.get('/lego/deleteSet/:num', (req, res) => {
+    const setNum = req.params.num;
+    legoData.deleteSet(setNum)
+      .then(() => {
+        res.redirect('/lego/sets');
+      })
+      .catch((error) => {
+        res.render('500', { message: `I'm sorry, but we have encountered the following error: ${error}` });
+      });
+  });
  
