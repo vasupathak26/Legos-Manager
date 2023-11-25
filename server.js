@@ -6,7 +6,7 @@
 * 
 *  https://www.senecacollege.ca/about/policies/academic-integrity-policy.html
 * 
-*  Name: Vasu Shaun Pathak Student ID: 117488221 Date: 2023-11-09
+*  Name: Vasu Shaun Pathak Student ID: 117488221 Date: 2023-11-25
 *
 *  Published URL: https://panicky-bee-shirt.cyclic.app/
 *
@@ -104,13 +104,10 @@ app.post('/lego/addSet', (req, res) => {
         res.status(404).render('404', { message: error.message });
       });
   })
-  app.post('/lego/editSet',(req,res)=>{
-    
+  app.post('/lego/editSet',(req,res)=>{ 
   legoData.editSet(req.body.set_num,req.body)
     .then(() => {
-      
       res.redirect('/lego/sets');
-      
     })
     .catch((error) => {
       res.render('500', { message: `I'm sorry, but we have encountered the following error: ${error}` });
@@ -118,8 +115,7 @@ app.post('/lego/addSet', (req, res) => {
   })
 
   app.get('/lego/deleteSet/:num', (req, res) => {
-    const setNum = req.params.num;
-    legoData.deleteSet(setNum)
+    legoData.deleteSet(req.params.num)
       .then(() => {
         res.redirect('/lego/sets');
       })
