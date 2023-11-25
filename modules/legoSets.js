@@ -8,6 +8,7 @@ require('dotenv').config();
 	  dialectOptions: {
 	    ssl: { rejectUnauthorized: false },
 	  },
+   
 	});
 	
 	sequelize
@@ -51,8 +52,7 @@ require('dotenv').config();
 	);
 	
  Set.belongsTo(Theme, {foreignKey: 'theme_id'})
-
-  let sets = [];  
+ 
 function initialize() {
     return new Promise((resolve,reject)=>{
       sequelize.sync().then(()=>{
@@ -118,7 +118,6 @@ function initialize() {
   }
   function addSet(setData) {
     return new Promise((resolve, reject) => {
-      
       Set.create(setData)
         .then(() => {
           resolve();
@@ -130,7 +129,6 @@ function initialize() {
   }
   function getAllThemes() {
     return new Promise((resolve, reject) => {
-    
       Theme.findAll()
         .then((themes) => {
           resolve(themes);
@@ -140,22 +138,20 @@ function initialize() {
         });
     });
   }
-  function editSet(setNum, setData){
-    return new Promise((resolve,reject)=>{
-      Set.update({
-        setData
-      },
-        {
-          where: {  set_num: setNum }, 
-        }
-      )
+  function editSet(setNum, setData) {  
+    return new Promise((resolve, reject) => {
+      Set.update(setData, {
+        where: { set_num: setNum },
+      })
         .then(() => {
-            resolve();
+          resolve();
         })
         .catch((error) => {
-          error.errors && error.errors.length > 0
-            ? error.errors[0].message
-            : 'An error occurred while updating the set.'
+          reject(
+            error.errors && error.errors.length > 0
+              ? error.errors[0].message
+              : 'An error occurred while updating the set.'
+          );
         });
     });
   }
@@ -173,7 +169,7 @@ function initialize() {
         });
     });
   }
-
+ 
 
   module.exports = { initialize, getAllSets, getSetByNum, getSetsByTheme,addSet,getAllThemes,editSet,deleteSet }
   
