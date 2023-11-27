@@ -10,15 +10,6 @@ require('dotenv').config();
 	  },
    
 	});
-	
-	sequelize
-	  .authenticate()
-	  .then(() => {
-	    console.log('Connection has been established successfully.');
-	  })
-	  .catch((err) => {
-	    console.log('Unable to connect to the database:', err);
-	  });
 	const Theme = sequelize.define('Theme',
 	 {
 	  id: {
@@ -123,7 +114,7 @@ function initialize() {
           resolve();
         })
         .catch((error) => {
-          reject(error.errors[0].message)
+          reject(error)
         });
     });
   }
