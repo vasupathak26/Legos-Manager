@@ -62,7 +62,10 @@
 </script>
           </span>
           <br /><br />
-          <a class="btn btn-success"  href="/lego/editSet/<%=set.set_num%>">Edit set: <%= set.name %></a>
+          <% if (session.user) { %>
+            <a class="btn btn-success"  href="/lego/editSet/<%=set.set_num%>">Edit set: <%= set.name %></a>
+          <% } %>
+         
           <a class="btn btn-primary btn-sm" href="#" onclick="history.back(); return false;">RETURN</a>
          </p>
   
