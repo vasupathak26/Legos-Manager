@@ -1355,13 +1355,6 @@ html {
     background-color: hsl(var(--pf) / var(--tw-bg-opacity));
   }
 
-  .btn-accent:hover {
-    --tw-border-opacity: 1;
-    border-color: hsl(var(--af) / var(--tw-border-opacity));
-    --tw-bg-opacity: 1;
-    background-color: hsl(var(--af) / var(--tw-bg-opacity));
-  }
-
   .btn-success:hover {
     --tw-border-opacity: 1;
     border-color: hsl(var(--su) / var(--tw-border-opacity));
@@ -1394,15 +1387,6 @@ html {
     background-color: hsl(var(--pf) / var(--tw-bg-opacity));
     --tw-text-opacity: 1;
     color: hsl(var(--pc) / var(--tw-text-opacity));
-  }
-
-  .btn-outline.btn-accent:hover {
-    --tw-border-opacity: 1;
-    border-color: hsl(var(--af) / var(--tw-border-opacity));
-    --tw-bg-opacity: 1;
-    background-color: hsl(var(--af) / var(--tw-bg-opacity));
-    --tw-text-opacity: 1;
-    color: hsl(var(--ac) / var(--tw-text-opacity));
   }
 
   .btn-outline.btn-success:hover {
@@ -1708,13 +1692,6 @@ html {
   transform: scale(var(--btn-focus-scale, 0.97));
 }
 
-.btn-active {
-  --tw-border-opacity: 1;
-  border-color: hsl(var(--b3) / var(--tw-border-opacity));
-  --tw-bg-opacity: 1;
-  background-color: hsl(var(--b3) / var(--tw-bg-opacity));
-}
-
 .btn:focus-visible {
   outline-style: solid;
   outline-width: 2px;
@@ -1738,44 +1715,6 @@ html {
   background-color: hsl(var(--pf) / var(--tw-bg-opacity));
 }
 
-.btn-secondary.btn-active {
-  --tw-border-opacity: 1;
-  border-color: hsl(var(--sf) / var(--tw-border-opacity));
-  --tw-bg-opacity: 1;
-  background-color: hsl(var(--sf) / var(--tw-bg-opacity));
-}
-
-.btn-accent {
-  --tw-border-opacity: 1;
-  border-color: hsl(var(--a) / var(--tw-border-opacity));
-  --tw-bg-opacity: 1;
-  background-color: hsl(var(--a) / var(--tw-bg-opacity));
-  --tw-text-opacity: 1;
-  color: hsl(var(--ac) / var(--tw-text-opacity));
-  outline-color: hsl(var(--a) / 1);
-}
-
-.btn-accent.btn-active {
-  --tw-border-opacity: 1;
-  border-color: hsl(var(--af) / var(--tw-border-opacity));
-  --tw-bg-opacity: 1;
-  background-color: hsl(var(--af) / var(--tw-bg-opacity));
-}
-
-.btn-neutral.btn-active {
-  --tw-border-opacity: 1;
-  border-color: hsl(var(--nf) / var(--tw-border-opacity));
-  --tw-bg-opacity: 1;
-  background-color: hsl(var(--nf) / var(--tw-bg-opacity));
-}
-
-.btn-info.btn-active {
-  --tw-border-opacity: 1;
-  border-color: hsl(var(--in) / var(--tw-border-opacity));
-  --tw-bg-opacity: 1;
-  background-color: hsl(var(--in) / var(--tw-bg-opacity));
-}
-
 .btn-success {
   --tw-border-opacity: 1;
   border-color: hsl(var(--su) / var(--tw-border-opacity));
@@ -1791,13 +1730,6 @@ html {
   border-color: hsl(var(--su) / var(--tw-border-opacity));
   --tw-bg-opacity: 1;
   background-color: hsl(var(--su) / var(--tw-bg-opacity));
-}
-
-.btn-warning.btn-active {
-  --tw-border-opacity: 1;
-  border-color: hsl(var(--wa) / var(--tw-border-opacity));
-  --tw-bg-opacity: 1;
-  background-color: hsl(var(--wa) / var(--tw-bg-opacity));
 }
 
 .btn-error {
@@ -1846,21 +1778,6 @@ html {
   --tw-bg-opacity: 0.2;
 }
 
-.btn-link.btn-active {
-  border-color: transparent;
-  background-color: transparent;
-  text-decoration-line: underline;
-}
-
-.btn-outline.btn-active {
-  --tw-border-opacity: 1;
-  border-color: hsl(var(--bc) / var(--tw-border-opacity));
-  --tw-bg-opacity: 1;
-  background-color: hsl(var(--bc) / var(--tw-bg-opacity));
-  --tw-text-opacity: 1;
-  color: hsl(var(--b1) / var(--tw-text-opacity));
-}
-
 .btn-outline.btn-primary {
   --tw-text-opacity: 1;
   color: hsl(var(--p) / var(--tw-text-opacity));
@@ -1875,29 +1792,6 @@ html {
   color: hsl(var(--pc) / var(--tw-text-opacity));
 }
 
-.btn-outline.btn-secondary.btn-active {
-  --tw-border-opacity: 1;
-  border-color: hsl(var(--sf) / var(--tw-border-opacity));
-  --tw-bg-opacity: 1;
-  background-color: hsl(var(--sf) / var(--tw-bg-opacity));
-  --tw-text-opacity: 1;
-  color: hsl(var(--sc) / var(--tw-text-opacity));
-}
-
-.btn-outline.btn-accent {
-  --tw-text-opacity: 1;
-  color: hsl(var(--a) / var(--tw-text-opacity));
-}
-
-.btn-outline.btn-accent.btn-active {
-  --tw-border-opacity: 1;
-  border-color: hsl(var(--af) / var(--tw-border-opacity));
-  --tw-bg-opacity: 1;
-  background-color: hsl(var(--af) / var(--tw-bg-opacity));
-  --tw-text-opacity: 1;
-  color: hsl(var(--ac) / var(--tw-text-opacity));
-}
-
 .btn-outline.btn-success {
   --tw-text-opacity: 1;
   color: hsl(var(--su) / var(--tw-text-opacity));
@@ -1910,24 +1804,6 @@ html {
   background-color: hsl(var(--su) / var(--tw-bg-opacity));
   --tw-text-opacity: 1;
   color: hsl(var(--suc) / var(--tw-text-opacity));
-}
-
-.btn-outline.btn-info.btn-active {
-  --tw-border-opacity: 1;
-  border-color: hsl(var(--in) / var(--tw-border-opacity));
-  --tw-bg-opacity: 1;
-  background-color: hsl(var(--in) / var(--tw-bg-opacity));
-  --tw-text-opacity: 1;
-  color: hsl(var(--inc) / var(--tw-text-opacity));
-}
-
-.btn-outline.btn-warning.btn-active {
-  --tw-border-opacity: 1;
-  border-color: hsl(var(--wa) / var(--tw-border-opacity));
-  --tw-bg-opacity: 1;
-  background-color: hsl(var(--wa) / var(--tw-bg-opacity));
-  --tw-text-opacity: 1;
-  color: hsl(var(--wac) / var(--tw-text-opacity));
 }
 
 .btn-outline.btn-error {
@@ -2407,49 +2283,6 @@ html {
 
 .prose :where(tbody tr, thead):not(:where([class~="not-prose"] *)) {
   border-bottom-color: hsl(var(--bc) / 20%);
-}
-
-.glass,
-  .glass.btn-active {
-  border: none;
-  -webkit-backdrop-filter: blur(var(--glass-blur, 40px));
-          backdrop-filter: blur(var(--glass-blur, 40px));
-  background-color: transparent;
-  background-image: linear-gradient(
-        135deg,
-        rgb(255 255 255 / var(--glass-opacity, 30%)) 0%,
-        rgb(0 0 0 / 0%) 100%
-      ),
-      linear-gradient(
-        var(--glass-reflex-degree, 100deg),
-        rgb(255 255 255 / var(--glass-reflex-opacity, 10%)) 25%,
-        rgb(0 0 0 / 0%) 25%
-      );
-  box-shadow: 0 0 0 1px rgb(255 255 255 / var(--glass-border-opacity, 10%)) inset,
-      0 0 0 2px rgb(0 0 0 / 5%);
-  text-shadow: 0 1px rgb(0 0 0 / var(--glass-text-shadow-opacity, 5%));
-}
-
-@media (hover: hover) {
-  .glass.btn-active {
-    border: none;
-    -webkit-backdrop-filter: blur(var(--glass-blur, 40px));
-            backdrop-filter: blur(var(--glass-blur, 40px));
-    background-color: transparent;
-    background-image: linear-gradient(
-          135deg,
-          rgb(255 255 255 / var(--glass-opacity, 30%)) 0%,
-          rgb(0 0 0 / 0%) 100%
-        ),
-        linear-gradient(
-          var(--glass-reflex-degree, 100deg),
-          rgb(255 255 255 / var(--glass-reflex-opacity, 10%)) 25%,
-          rgb(0 0 0 / 0%) 25%
-        );
-    box-shadow: 0 0 0 1px rgb(255 255 255 / var(--glass-border-opacity, 10%)) inset,
-        0 0 0 2px rgb(0 0 0 / 5%);
-    text-shadow: 0 1px rgb(0 0 0 / var(--glass-text-shadow-opacity, 5%));
-  }
 }
 
 .btm-nav-xs > *:where(.active) {
