@@ -22,7 +22,7 @@ function initialize(){
         let db = mongoose.createConnection(process.env.MONGODB);
 
         db.on('error', (err)=>{
-            reject(err); // reject the promise with the provided error
+            reject(err);
         });
         db.once('open', ()=>{
            User = db.model("users", userSchema);
@@ -34,25 +34,16 @@ function initialize(){
 
 function registerUser(userData) {
     return new Promise((resolve, reject) => {
-      // Check if passwords match
       if (userData.password !== userData.password2) {
         reject(new Error("Passwords do not match"));
         return;
       }
-  
-      // Hash the password before saving to the database
       bcrypt.hash(userData.password, 10)
         .then((hashedPassword) => {
-          // Update the userData with the hashed password
           userData.password = hashedPassword;
-  
-          // Create a new User instance
           const newUser = new User(userData);
-  
-          // Save the user to the database
           newUser.save()
             .then(() => {
-              // User saved successfully
               resolve();
             })
             .catch((err) => {
@@ -64,34 +55,46 @@ function registerUser(userData) {
         });
     });
   }
-function checkUser(userData) {
+  function checkUser(userData) {
     return new Promise((resolve, reject) => {
-        User.findOne({ userName: userData.userName })
+        User.find({ userName: userData.userName })
             .exec()
-            .then((user) => {
-                bcrypt.compare(userData.password, user.password).then((result) => {
-                    if (result) {
-                        const loginHistoryObj = {dateTime: new Date(), userAgent: userData.userAgent}
-                        user.loginHistory.push(loginHistoryObj)
-                        // either add the array of loginHistories or add a single one:
-                        User.updateOne({ userName: user.userName }, { $set: { loginHistory:  user.loginHistory} })
-                        .exec()
-                        .then(() => {
-                            resolve(user)
-                        }).catch((err) => {
-                            reject("LOGIN HISTORY UPDATE FAILED")
-                        })
-                    } else {
-                        reject("Credentials incorrect!")
-                    }
-                }).catch((err) => {
-                    reject("Credentials incorrect!")
-                })
-            }).catch((err) => {
-                reject("Credentials incorrect!")
+            .then((users) => {
+                if (users.length === 0) {
+                    reject(`Unable to find user: ${userData.userName}`);
+                } else {
+                    const user = users[0];
+                    bcrypt.compare(userData.password, user.password).then((result) => {
+                        if (result) {
+                            if (user.loginHistory.length === 8) {
+                                user.loginHistory.pop();
+                            }
+                            const loginHistoryObj = { dateTime: new Date(), userAgent: userData.userAgent };
+                            user.loginHistory.unshift(loginHistoryObj);
+
+                            User.updateOne({ userName: user.userName }, { $set: { loginHistory: user.loginHistory } })
+                                .exec()
+                                .then(() => {
+                                    resolve(user);
+                                })
+                                .catch((err) => {
+                                    reject(`There was an error updating login history: ${err}`);
+                                });
+                        } else {
+                            reject(`Incorrect Password for user: ${userData.userName}`);
+                        }
+                    })
+                    .catch((err) => {
+                        reject(`Credentials incorrect: ${err}`);
+                    });
+                }
             })
-    })
+            .catch((err) => {
+                reject(`Unable to find user: ${userData.userName}`);
+            });
+    });
 }
+
 
 
 module.exports = { initialize,registerUser,checkUser }
